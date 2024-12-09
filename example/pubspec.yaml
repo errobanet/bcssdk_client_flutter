@@ -17,7 +17,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  permission_handler: ^11.3.1
   bcssdk_client:
     path: ../
 

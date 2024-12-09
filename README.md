@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   #Otras dependencias
-  bcssdk_client: ^1.3.2
+  bcssdk_client: ^1.4.0
 ```
 <aside class="positive">
 No olvides hacer el 'flutter pub get'
@@ -30,14 +30,18 @@ La verificación de identidad con rostro necesita algunos permisos en el disposi
 * Cámara
 * Micrófono
 
-Estos permisos debes solicitarlos con tu app, en el ejemplo podes ver como hacerlo con el widget de permissions_handler.
+El SDK los solicita, pero si son denegados obtendras la respuesta `PERMISSIONS_ERROR`.
+
+>En Android no necesitas editar el archivo AndroidManifest.xml, el plugin agrega lo necesario.
+ 
+>En iOS, debes agregar la entrada de `NSCameraUsageDescription` a tu `Info.plist`
 
 ## Librerias nativas - Android
 
 Primero vamos a copiar algunas librerias nativas que son necesarias que funcione el proyecto.
 
 1. Copia el archivo `bcssdk-x.x.x.aar` a la carpeta `android/app/libs`
-2. Edita el archivo `android/app/build.gradle`, cambia la `minSdk` por `26` y agrega la dependencia `implementation files('libs/bcssdk-1.x.x.aar')`:
+2. Edita el archivo `android/app/build.gradle` y agrega la dependencia `implementation files('libs/bcssdk-1.x.x.aar')`:
 
 Debería quedarte algo así:
 
@@ -65,37 +69,9 @@ A continuacion vamos a mostrar el uso suponiendo que ya tenemos un código de tr
 
 Ya tenemos todo configurado, vamos a usar el cliente!
 
-Para llamar a la verificación solo tenes que llamar la función `_bcsPlugin.faceVerify(code);`
+Para llamar a la verificación solo tenes que llamar la función `_bcsPlugin.faceVerify(code);`, la función es asincrónica, debes obtener el resultado con `await`
 
-Te dejamos un ejemplo de chequeo de permisos y llamada. Poniendo este código en un Widget solo tenes que llamar a la función `processVerifyAsync(code)` con el código generado en el servidor.
 
-```dart
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:permission_handler/permission_handler.dart';
-import 'bcs_face_verify.dart';
-
-Future processVerifyAsync(String code) async{
-    final checkPermissions = await this._checkPermissions();
-    if (!checkPermissions) {
-      /// Manejar permisos denegados
-    }
-    else {
-      var result = await _verifyFace(code);
-      /// manejo de respuesta
-    }
-  }
-
-  Future<VerifyResult> _verifyFace(String code) async {
-    return _bcsPlugin.faceVerify(code);
-  }
-
-  Future<bool> _checkPermissions() async {
-    var p1 = await Permission.camera.request();
-    var p2 = await Permission.microphone.request();
-    return p1.isGranted && p2.isGranted;
-  }
-```
 
 ### Respuestas
 

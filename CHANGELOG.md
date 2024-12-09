@@ -1,6 +1,10 @@
-## 1.3.2
+## 1.4.0
 
-Actualizacion de readme.md para instruxxiones de instalación
+Se incorporó solicitud de permisos en el SDK
+
+## 1.3.3
+
+Actualización de readme.md para instruciones de instalación
 
 ## 1.3.1
 

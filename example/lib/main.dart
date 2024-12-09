@@ -2,7 +2,6 @@ import 'package:bcssdk_client/bcssdk.dart';
 import 'package:bcssdk_client/verify_result.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -87,16 +86,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future processVerifyAsync(String code) async{
-    final checkPermissions = await this._checkPermissions();
-    if (!checkPermissions) {
-      /// Manejar permisos denegados
-    }
-    else {
       var result = await _verifyFace(code);
       setState(() {
         _result = result.toString();
       });
-    }
   }
 
   Future<VerifyResult> _verifyFace(String code) async {
@@ -106,9 +99,4 @@ class _MyAppState extends State<MyApp> {
     return _bcsPlugin.faceVerify(code);
   }
 
-  Future<bool> _checkPermissions() async {
-    var p1 = await Permission.camera.request();
-    var p2 = await Permission.microphone.request();
-    return p1.isGranted && p2.isGranted;
-  }
 }
