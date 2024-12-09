@@ -2,6 +2,20 @@
 
 Plugin de flutter para eluso de BCSSDK
 
+## Instalacion componente BCS
+Para poder utilizar BCS de forma rápida edita el archivo `pubspec.yaml` y agrega la dependencia de `bcssdk_client`:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  #Otras dependencias
+  bcssdk_client: ^1.3.1
+```
+<aside class="positive">
+No olvides hacer el 'flutter pub get'
+</aside>
+
 ## Primeros pasos
 
 Este es un proyecto de uso de BCSSDK para verificaciones de identidad.
