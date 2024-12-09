@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   #Otras dependencias
-  bcssdk_client: ^1.3.1
+  bcssdk_client: ^1.3.2
 ```
 <aside class="positive">
 No olvides hacer el 'flutter pub get'
@@ -41,7 +41,7 @@ Primero vamos a copiar algunas librerias nativas que son necesarias que funcione
 
 Debería quedarte algo así:
 
-![image_caption](images/android.png)
+![image_caption](https://raw.githubusercontent.com/errobanet/bcssdk_client_flutter/main/images/android.png)
 
 ### Librerias nativas - iOS
 
@@ -51,11 +51,11 @@ Para iOS es necesario referenciar el bcssdk.xcframework en el proyecto del Runne
 2. Referencia el framework bcssdk.xcframework (lo puedes arrastrar desde finder y elige la opcion copy files)
 3. En la configuración general del Runner, chequea que el framework este referenciado y este como "Embed & Sign":
 
-![image_caption](images/ios_ref01.png)
+![image_caption](https://raw.githubusercontent.com/errobanet/bcssdk_client_flutter/main/images/ios_ref01.png)
 
 4. En Build Phases, en la seccion de "Copy Bundle Resources", agrega "bcssdk.xcframework"
 
-![image_caption](images/ios_ref02.png)
+![image_caption](https://raw.githubusercontent.com/errobanet/bcssdk_client_flutter/main/images/ios_ref02.png)
 
 ### Respuestas
 
@@ -127,7 +127,7 @@ No dejes este codigo en un tu aplicacion RELEASE.
 
 Para utilizar la verificación previamente debes haber generado un código de transacción desde el backend de tu aplicación.
 
-![image_caption](images/app_seq.png)
+![image_caption](https://raw.githubusercontent.com/errobanet/bcssdk_client_flutter/main/images/app_seq.png)
 
 <aside class="negative">
 Es recomendable NO exponer en tus APIS la identificación de la persona, sino hacerlo sobre algún identificador de onboarding o transacción. De esta froma podes prevenir el uso de tu API x terceros.
